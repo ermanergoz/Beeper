@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Beeper</string>
+    <string name="channel_name">beeper notification</string>
+
+</resources>
