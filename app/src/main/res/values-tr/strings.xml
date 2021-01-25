@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="turn_off_battery_optimization">Lütfen bu uygulama için batarya optimizasyonunu kapatın.</string>
+    <string name="ok">Tamam</string>
+    <string name="cancel">İptal</string>
+</resources>
