@@ -8,8 +8,8 @@ A simple hourly chime for Android. This application beeps twice in every full ho
 
 ## Features
 
-- Beeps twice in every full hour
-- Beeps once in every half hour
+- Beep twice in every full hour
+- Beep once in every half hour
 - Turn on the reminders
 - Turn off the reminders
 
