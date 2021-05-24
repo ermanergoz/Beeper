@@ -26,6 +26,13 @@ A simple hourly chime for Android. This application beeps twice in every full ho
 	- Select the location of the cloned repository and then Click OK.
 	- After Gradle operations are finished, the application will be ready to run.
 
+## Application Architecture & Dependencies
+
+- [MVVM architecture](https://developer.android.com/jetpack/guide)
+- [Data binding](https://developer.android.com/topic/libraries/data-binding)
+- [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)
+- [Koin](https://insert-koin.io/)
+
 ## Meta
 
 Yusuf Erman ERGÖZ – erman.ergoz@gmail.com
