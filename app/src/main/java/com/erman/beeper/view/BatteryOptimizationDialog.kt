@@ -1,10 +1,11 @@
-package com.erman.beeper
+package com.erman.beeper.view
 
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
+import com.erman.beeper.R
 
 class BatteryOptimizationDialog : DialogFragment() {
     private lateinit var listener: BatteryDialogListener

@@ -1,40 +1,29 @@
-package com.erman.beeper
+package com.erman.beeper.view
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.databinding.DataBindingUtil
+import com.erman.beeper.R
+import com.erman.beeper.databinding.ActivityMainBinding
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), BatteryOptimizationDialog.BatteryDialogListener {
-    private lateinit var alarmScheduler: AlarmScheduler
-    private lateinit var preferences: SharedPreferences
+    private val viewModel by viewModel<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
-        alarmScheduler = AlarmScheduler(applicationContext)
-        preferences = applicationContext.getSharedPreferences(SHARED_PREF_FILE, Context.MODE_PRIVATE)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
-        if (preferences.getBoolean(KEY_IS_ALARM_ON, true))
-            scheduleAlarms()
-        else
-            cancelAlarms()
-
-        alarmToggleButton.isChecked = preferences.getBoolean(KEY_IS_ALARM_ON, true)
-        alarmToggleButton.setOnCheckedChangeListener { _, isChecked ->
-            preferences.edit().putBoolean(KEY_IS_ALARM_ON, isChecked).apply()
-
-            if (isChecked) scheduleAlarms()
-            else cancelAlarms()
-        }
+        viewModel.updateAlarms()
     }
 
     override fun onResume() {
@@ -42,15 +31,6 @@ class MainActivity : AppCompatActivity(), BatteryOptimizationDialog.BatteryDialo
 
         if (!isIgnoringBatteryOptimizations())
             BatteryOptimizationDialog().show(supportFragmentManager, "")
-    }
-
-    private fun scheduleAlarms() {
-        alarmScheduler.setFullHourAlarm()
-        alarmScheduler.setHalfHourAlarm()
-    }
-
-    private fun cancelAlarms() {
-        alarmScheduler.cancelAlarms()
     }
 
     private fun isIgnoringBatteryOptimizations(): Boolean {

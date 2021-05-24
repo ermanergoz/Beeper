@@ -1,10 +1,14 @@
-package com.erman.beeper
+package com.erman.beeper.model
 
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import com.erman.beeper.receivers.AlarmReceiver
+import com.erman.beeper.utils.KEY_ALARM_FULL_HOUR
+import com.erman.beeper.utils.KEY_ALARM_HALF_HOUR
+import com.erman.beeper.utils.KEY_ALARM_TYPE
 import java.util.*
 
 class AlarmScheduler(private val context: Context) {
